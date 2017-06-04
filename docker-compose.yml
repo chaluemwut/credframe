@@ -21,7 +21,6 @@ nginx:
     - /etc/localtime:/etc/localtime:ro     
   links:
     - ui
-    - api
 
 db:
   image: mongo:latest    
