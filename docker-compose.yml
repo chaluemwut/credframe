@@ -45,7 +45,6 @@ db:
 
 nginx-gen:
   image: jwilder/docker-gen
-  container_name: nginx-gen
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
     - ./server/proxy/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
@@ -55,7 +54,6 @@ nginx-gen:
 
 letsencrypt-nginx-proxy-companion:
   image: alastaircoote/docker-letsencrypt-nginx-proxy-companion
-  container_name: letsencrypt-nginx-proxy-companion
   volumes_from:
     - nginx
   volumes:
