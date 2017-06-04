@@ -9,9 +9,6 @@ base_name = 'twassess'
 url_name = '/' + base_name
 twassess_blueprint = Blueprint(base_name, __name__)
 
-client = MongoClient(host=config.db_host)
-db = client['credframe']
-
 class Index(ViewController):
     def process(self):
         self.page_name = create_pagename(base_name, 'index.html')

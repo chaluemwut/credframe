@@ -4,9 +4,6 @@ model_model_filepath = base_filepath+'/model'
 # API
 api_url = 'https://fbcredibility.com/api/process'
 
-# database
-db_host='localhost'
-
 import os
 from pymongo import MongoClient
 client = MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'], 27017)
