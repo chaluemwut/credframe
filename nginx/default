@@ -1,0 +1,11 @@
+server {
+
+    listen 80;
+    server_name localhost;
+    charset utf-8;
+
+    location / {
+        proxy_pass http://ui:8002;
+        include /etc/nginx/proxy_params;        
+    }         
+}
