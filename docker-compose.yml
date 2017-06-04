@@ -1,5 +1,7 @@
 main:
   image: nginx
+  links:
+    - ui:ui   
   volumes:
     - ./server/conf.d/:/etc/nginx/conf.d
     - /etc/localtime:/etc/localtime:ro
@@ -18,7 +20,7 @@ ui:
     - db  
   volumes:
     - ./ui:/ui    
-    - ./data:/data
+    - ./data/file:/data
     - /etc/localtime:/etc/localtime:ro   
   command: /usr/local/bin/gunicorn -w 2 -b :8003 server:app 
 
@@ -39,7 +41,7 @@ nginx:
 db:
   image: mongo:latest    
   volumes:
-    - /home/ubuntu/datafile/data/db:/data/db
+    - ./data/db:/data/db
     - /etc/timezone:/etc/timezone
     - /etc/localtime:/etc/localtime:ro 
 
