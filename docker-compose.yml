@@ -1,6 +1,5 @@
 main:
   image: nginx
-  container_name: main
   volumes:
     - ./server/conf.d/:/etc/nginx/conf.d
     - /etc/localtime:/etc/localtime:ro
@@ -12,7 +11,6 @@ main:
 
 ui:
   build: ./ui
-  container_name: ui
   working_dir: /ui  
   expose:
     - 8003
@@ -26,7 +24,6 @@ ui:
 
 nginx:
   image: nginx
-  container_name: nginx
   ports:
     - 80:80
     - 443:443
