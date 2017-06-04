@@ -1,9 +1,9 @@
 main:
   image: nginx
   volumes:
-    - ./server/conf.d/:/etc/nginx/conf.d
-    - /etc/localtime:/etc/localtime:ro
-    - ./server/proxy/html:/usr/share/nginx/html:rw
+    - "./server/conf.d/:/etc/nginx/conf.d"
+    - "/etc/localtime:/etc/localtime:ro"
+    - "./server/proxy/html:/usr/share/nginx/html:rw"
   environment:
     - VIRTUAL_HOST=fbcredibility.com
     - LETSENCRYPT_HOST=fbcredibility.com
