@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form enctype="multipart/form-data" action="/frame/upload/process/" method="post">
+
+    <h1 align="center">Upload training data</h1>
+
+    <div class="row">
+        <divl class="list-group" >
+            <div class="input-group" style="padding-left:10%; padding-right: 10%;">
+                <span class="input-group-addon" style="height: 40px;"></span>
+                <input type="text" name="model_name" class="form-control" style="height: 40px;" placeholder=": Model name"/>
+            </div>
+            <div style="padding-left:10%; margin-top:20px;">
+                <input type="file" name="file"/>
+            </div>
+            <div class="input-group" style="padding-left:10%; padding-right: 10%; margin-top:20px;">
+                <span class="input-group-addon" style="height: 40px;"></span>
+                <input type="text" name="description" class="form-control" style="height: 40px;" placeholder=": Moodel description"/>
+            </div>
+            <div align="center" style="margin-top:20px;">
+                <input type="submit" class="btn btn-primary" value="Upload"/>
+            </div>
+        </divl>
+    </div>
+
+</form>
+
+{% endblock %}

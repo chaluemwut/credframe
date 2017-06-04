@@ -1,0 +1,8 @@
+146406732438_10155713293152439?fields=message,shares
+
+146406732438_10156253951082729?fields=shares,message
+
+
+https://www.facebook.com/MatichonOnline/posts/10156256475287729
+
+7568536355_10154445269266356?fields=from,message,shares,comments.limit(1).summary(true),likes.limit(1).summary(true)

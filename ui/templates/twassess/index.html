@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 align="center">Twitter Assessment</h1>
+
+<div id="panel_result" class="panel panel-primary" style="margin-left:15%; margin-right: 15%; display: none">
+    <div class="panel-heading">Twitter Result</div>
+    <div class="panel-body">
+        <span id="result_message">
+
+        </span>
+    </div>
+</div>
+
+
+<div class="modal fade" id="waitingView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Waiting</h4>
+            </div>
+            <div class="modal-body">
+                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Credibility computation....
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-left:10%; margin-right: 10%; margin-top:20px;">
+    <div class="input-group">
+        <input type="text" id="search_text" class="form-control" placeholder=": Tweet URL">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="grapFeatures();">Credibility Assessment</button>
+      </span>
+    </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+{% endblock %}

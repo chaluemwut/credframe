@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block js_script %}
+<script>
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1465202247078264',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.3' // use graph api version 2.8
+  });
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      <!--document.getElementById('status').innerHTML =-->
+        <!--'Thanks for logging in, ' + response.name + '!';-->
+    });
+  }
+
+  function grapFeatures(){
+    $('#waitingView').modal();
+    $('#panel_result').hide();
+    var search_text = $('#search_text').val();
+    console.log(search_text);
+    search_text = search_text.replace('https://www.facebook.com/','').replace('https://facebook.com/','').replace('/posts','');
+    var search_arr = search_text.split('/');
+    var page_name = search_arr[0];
+    FB.api('/'+page_name, function(response){
+        console.log(response.id+'_'+search_arr[1]);
+        var post_id = '/'+response.id+'_'+search_arr[1]+'?fields=message,shares,comments.limit(1).summary(true),likes.limit(1).summary(true)';
+        console.log(post_id);
+        FB.api(post_id, function(page_res){
+            var message = page_res.message;
+            var share_count = page_res.shares.count;
+            var comment_count = page_res.comments.summary.total_count;
+            var like_count = page_res.likes.summary.total_count;
+            $.ajax({
+                url: '/fbassess/assess',
+                data:{share_count:share_count, comment_count:comment_count, like_count:like_count, message:message}
+            }).done(function(data){
+                var cred_result = data.data.cred;
+                $('#panel_result').show();
+                $('#result_message').text(cred_result);
+                $('#waitingView').modal('hide');
+            }
+            );
+        });
+    });
+  }
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h1 align="center">Facebook Assessment</h1>
+
+<div class="row" align="center" style="margin-bottom: 10px;">
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+</div>
+
+<div id="panel_result" class="panel panel-primary" style="margin-left:15%; margin-right: 15%; display: none">
+    <div class="panel-heading">Credibility Result</div>
+    <div class="panel-body">
+        <span id="result_message">
+
+        </span>
+    </div>
+</div>
+
+
+<div class="modal fade" id="waitingView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Waiting</h4>
+            </div>
+            <div class="modal-body">
+                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Credibility computation....
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-left:10%; margin-right: 10%; margin-top:20px;">
+    <div class="input-group">
+        <input type="text" id="search_text" class="form-control" placeholder=": Publish Facebook URL">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="grapFeatures();">Credibility Assessment</button>
+      </span>
+    </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+{% endblock %}

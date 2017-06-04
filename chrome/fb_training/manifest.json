@@ -1,0 +1,65 @@
+{
+	"manifest_version": 2,
+	"name": "FBTraining",
+	"version": "0.0.1",
+	"author": "Chaluemwut Noyunsan",
+	"description": "This extendsion is used for training data creation",
+	"homepage_url": "http://www.fbcredibility.com",
+
+	"icons": {
+		"16": "img/icon16.png",
+		"48": "img/icon48.png",
+		"128": "img/icon128.png"
+	},
+
+	"permissions": [
+		"storage",
+		"https://www.facebook.com/*",
+		"http://www.fbcredibility.com/api/*",
+		"http://localhost/api/*"
+	],
+
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.facebook.com/*",
+				"http://www.fbcredibility.com/*",
+				"http://www.soeleh.com:8001/*",
+				"http://127.0.0.1:5000/*"
+			],
+			"css": [
+				"css/fbcredibility.css",
+				"css/bootstrap.css",
+				"css/style.css"
+			],
+			"js": [
+				"js/lib/jquery-1.10.2.min.js",
+				"js/lib/bootstrap.min.js",
+				"js/fbcredibility.js"
+			],
+			"run_at": "document_end",
+			"all_frames": false
+		}
+	],
+
+	"background": {
+		"scripts": [
+			"js/background.js"
+		],
+		"persistent": false
+	},
+
+	"page_action": {
+		"default_icon": {
+			"19": "img/icon19.png",
+			"38": "img/icon38.png"
+		},
+		"default_title": "Click to give feedback about TweetCred."
+	},
+
+	"web_accessible_resources": [
+		"img/*",
+		"font/*",
+		"js/jquery-1.10.2.min.map"
+	]
+}
