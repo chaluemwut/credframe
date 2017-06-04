@@ -32,7 +32,7 @@ nginx:
   volumes:
     - /etc/nginx/conf.d
     - /etc/nginx/vhost.d
-    - ./server/proxy/html:/usr/share/nginx/html:ro
+    - ./server/proxy/html:/usr/share/nginx/html:rw
     - ./server/proxy/certs:/etc/nginx/certs:ro
     - /etc/localtime:/etc/localtime:ro
 
