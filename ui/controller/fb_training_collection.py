@@ -25,6 +25,7 @@ class FBCollection(APIController):
         poster_id = request.args.get('poster_id')
         message = request.args.get('message')
 
+        db_data['cred_value'] = cred_value
         db_data['likes'] = likes
         db_data['shares'] = shares
         db_data['comments'] = comments
