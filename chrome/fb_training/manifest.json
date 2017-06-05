@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "FBTraining",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Chaluemwut Noyunsan",
 	"description": "This extendsion is used for training data creation",
 	"homepage_url": "http://www.fbcredibility.com",
@@ -15,7 +15,7 @@
 	"permissions": [
 		"storage",
 		"https://www.facebook.com/*",
-		"http://www.fbcredibility.com/api/*",
+		"http://fbcredibility.com/*",
 		"http://localhost/api/*"
 	],
 
@@ -23,8 +23,6 @@
 		{
 			"matches": [
 				"https://www.facebook.com/*",
-				"http://www.fbcredibility.com/*",
-				"http://www.soeleh.com:8001/*",
 				"http://127.0.0.1:5000/*"
 			],
 			"css": [

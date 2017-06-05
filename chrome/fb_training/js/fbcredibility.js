@@ -134,10 +134,11 @@ function template_sender(index, value){
 	var hashtag = $("#hash_tag_"+index).val();
 	var images = $("#images_"+index).val();
 	var vdo = $("#vdo_"+index).val();
+	var poster_id = $("#poster_id_"+index).val();
 	var message = $("#message_"+index).val();
 
 	FBPostObj = {return_id:index, likes: likes, shares: shares, 
-				comments: comments, hashtag: hashtag, images: images,
+				comments: comments, hashtag: hashtag, images: images, poster_id:poster_id,
 				vdo: vdo, message: message, cred_value: value};
 
 	var request = {action: 'fetch_credibility', fbpost: FBPostObj};

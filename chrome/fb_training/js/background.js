@@ -1,8 +1,8 @@
 chrome.runtime.onStartup.addListener(initOnStartup);
 chrome.runtime.onMessage.addListener(callAPI);
 
-// var apiRoot  = 'http://www.fbcredibility.com/api/';
-var apiRoot  = 'http://localhost:5000/fbcollect/process';
+var apiRoot  = 'http://fbcredibility.com/fbcollect/process';
+// var apiRoot  = 'http://localhost:5000/fbcollect/process';
 
 
 var xhrF, xhrC = [];
@@ -24,10 +24,10 @@ function callAPI(request, sender, sendResponse) {
 		+'&likes='+request.fbpost.likes
 		+'&shares='+request.fbpost.shares
 		+'&comments='+request.fbpost.comments
-		+'&hashtag='+request.fbpost.hashtag
+		+'&hash_tag='+request.fbpost.hashtag
 		+'&images='+request.fbpost.images
 		+'&vdo='+request.fbpost.vdo
-		+'&poster_id'+request.fbpost.poster_id
+		+'&poster_id='+request.fbpost.poster_id
 		+'&message='+encodeURIComponent(request.fbpost.message);
 		console.log('location : '+request.fbpost.location);
 		xhr.open("get", url, false);
