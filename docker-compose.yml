@@ -9,7 +9,7 @@ ui:
     - ./ui:/ui    
     - ./data/file:/data
     - /etc/localtime:/etc/localtime:ro   
-  command: /usr/local/bin/gunicorn -w 2 -b :8002 server:app 
+  command: /usr/local/bin/gunicorn -w 2 -b :8002 server:app --reload
 
 nginx:
   restart: always
