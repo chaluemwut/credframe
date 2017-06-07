@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "FBTraining",
-	"version": "0.0.2",
+	"version": "0.0.5",
 	"author": "Chaluemwut Noyunsan",
 	"description": "This extendsion is used for training data creation",
 	"homepage_url": "http://www.fbcredibility.com",

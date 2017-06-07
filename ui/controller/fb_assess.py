@@ -28,6 +28,9 @@ class FBAssess(APIController):
         shares = request.args.get('share_count')
         comments = request.args.get('comment_count')
         message = request.args.get('message')
+        # call non-newsworthy API
+
+        # calll credibility assessment API
         return {'error': 0, 'data': {'cred': 'Trustworthiness'}}
 
 

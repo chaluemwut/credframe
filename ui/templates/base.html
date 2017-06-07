@@ -1,77 +1,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>FB filter</title>
+    <title>Automatic Credibility Assessment</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}"
           rel="stylesheet" type="text/css"/>
 
     <!--&lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 
-<!--&lt;!&ndash; Optional theme &ndash;&gt;-->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+    <!--&lt;!&ndash; Optional theme &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
 
-<!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
     <!---->
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 
     <style type="text/css">
-        body, html {
+        body, html, body {
           height: 100%;
         }
+
+        .vr {
+            width: 2px;
+            background-color: #333333;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .app_btn {
+            background:#3fa9f5;
+            color:#ffffff;
+            border: none;
+            padding: 5px 20px;
+        }
+
+
     </style>
     {% block js_script %}{% endblock %}
 </head>
 <body>
 
-<div>
-    <div class="row"
-         style="position: relative; padding-top: 20px; padding-bottom: 20px; background-color: #3FA9F5">
-        <div class="col-sm-1" style="position: relative; margin-left: 40px;">
-            <img src="{{ url_for('static', filename='images/scm_icon.png') }}"/>
-        </div>
-        <div class="col-lg-8" style="position: relative; margin-left: 40px;">
-            <div class="row">
-                <h3>
-                    <span style="color: #FBB03B"> Social Media Credibility </span> is a
-                    framework for computation credibility of Social media.
-                </h3>
-            </div>
-            <div class="row"
-                 style="position: relative; background-color: #7AC943; padding-top: 10px; padding-bottom: 10px;">
-                <div class="pull-left">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/fbassess">FB Assess</a></li>
-                        <li><a href="/twassess">Tweet Assess</a></li>
-                        <li><a href="/frame/list">Framework</a></li>
-                        <!--<li><a href="/frame/upload">Upload Model</a></li>-->
-                    </ul>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid" style="min-height: 100%; height: 100%;">
+
+    {% include 'menu.html' %}
+
+    <div id="content" style="min-height: 70%;">
+        {% block content %}{% endblock %}
     </div>
+
     <div class="row">
-        <div class="color_box"></div>
+        <nav class="navbar navbar-fixed-bottom"
+             style="position: relative; margin-top: 20px; background-color: #3FA9F5; width: 100%">
+            <div class="col-lg-4 pull-left" style="position:relative; margin-top: 10px; color:#FFF">Copy right @ Khon
+                kaen
+                university
+            </div>
+            <div class="col-lg-2 pull-right" style="position:relative; margin-top: 10px; color:red;">We computa
+                credibility for you
+            </div>
+        </nav>
     </div>
 </div>
-
-<div id="content" style="min-height: 65%;">
-    {% block content %}{% endblock %}
-</div>
-
-<nav class="navbar navbar-fixed-bottom" style="position: relative; margin-top: 20px; background-color:#3FA9F5">
-    <div class="col-lg-4 pull-left" style="position:relative; margin-top: 10px; color:#FFF">Copy right @ Khon kaen
-        university
-    </div>
-    <div class="col-lg-2 pull-right" style="position:relative; margin-top: 10px; color:red;">We computa credibility for
-        you
-    </div>
-</nav>
-
 </body>
 </html>

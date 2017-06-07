@@ -111,8 +111,8 @@ function isNumeric(n) {
 
 function createButton(divId){
 	ret = ' <div class="right_div" id=rating_container_'+divId+'>';
-	ret += ' <button id=b_yes_'+divId+'>Yes</button>';
-	ret += ' <button id=b_no_'+divId+'>No</button>';
+	ret += ' <button id=b_yes_'+divId+' value="Yes">Yes</button>';
+	ret += ' <button id=b_no_'+divId+' value="No">No</button>';
 	ret += ' </div>';
 	return ret;
 }
@@ -120,7 +120,7 @@ function createButton(divId){
 function insertKKUDiv(divId, features){
 	var str = '<div id=kku_'+divId+' style="position: relative; margin-top: 10px; margin-bottom: 10px;">';
 	str += '<span style="color:orange">FB credibility : </span>';
-	str += 'ข้อมูลนี้สมควรวัดความน่าเชื่อถือหรือไม่';
+	str += 'ข้อมูลนี้น่าเชื่อถือหรือไม่';
 	str += createButton(divId);
 	str += createFeatureDiv(divId, features);
 	str += '</div>';
@@ -178,10 +178,11 @@ $(document).ready(function () {
 		});
 	});	
 	setInterval(function(){
-		$("div[id*='hyperfeed_story_id']").each(function(i){
-			var main_content = $(this);				
-			var user_content = $(main_content).find("div[class*='fbUserContent']");
-			var fb_content = $(main_content).find("div.fbUserContent._5pcr > div._1dwg._1w_m > div:nth-child(2) > div._5x46");			
+		$("div[class*='fbUserContent']").each(function(i){
+			// var main_content = $(this);				
+			// var user_content = $(main_content).find("div[class*='fbUserContent']");
+			var user_content = $(this);
+			var fb_content = $(user_content).find("div[class='_5x46']");			
 			var likes_comments = get_comments_shares($(user_content).find("div[class*='_ipn clearfix']"));
 			if($(fb_content).find("[id^='kku_']").length == 0){					
 				var likes_data = get_likes(user_content);
@@ -197,17 +198,13 @@ $(document).ready(function () {
 				$(fb_content).append(insertKKUDiv(i, features));
 
 				$("#b_yes_"+i).click(function(){
-					var obj = $(this);
-					var index = obj.attr('id').replace('b_yes_',"");
-					var value = $('input[name=feedback_'+index+']:checked').val();
-					template_sender(index, value);
+					var value = $('#b_yes_'+i).val();
+					template_sender(i, value);
 				});
 				$("#b_no_"+i).click(function(){
-					var obj = $(this);
-					var index = obj.attr('id').replace('b_no_',"");
-					var value = $('input[name=feedback_'+index+']:checked').val();
-					template_sender(index, value);
-				});				
+					var value = $('#b_no_'+i).val();
+					template_sender(i, value);
+				});					
 			}
 
 
